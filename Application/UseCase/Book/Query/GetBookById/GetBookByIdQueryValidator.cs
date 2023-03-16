@@ -1,10 +1,10 @@
 using FluentValidation;
 
-namespace Application.UseCase.Book.Command.Delete;
+namespace Application.UseCase.Book.Query.GetBookById;
 
-public class DeleteBookCommandValidator : AbstractValidator<DeleteBookCommand>
+public class GetBookByIdQueryValidator : AbstractValidator<GetBookByIdQuery>
 {
-    public DeleteBookCommandValidator()
+    public GetBookByIdQueryValidator()
     {
         RuleFor(x=>x.Id).NotEmpty()
             .Must(id => Guid.TryParse(id.ToString(), out _))
