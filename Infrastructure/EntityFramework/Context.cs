@@ -8,17 +8,31 @@ namespace Infrastructure.EntityFramework;
 
 public class Context : DbContext, IUnitOfWork, IContext
 {
-    public Context(DbContextOptions<Context> builderOptions) : base(builderOptions) { }
-    public Context() { }
-    
+    public Context()
+    {
+    }
+
+    public Context(DbContextOptions builderOptions) : base(builderOptions)
+    {
+    }
+
     public IDbConnection Connection => base.Database.GetDbConnection();
-    private IDbContextTransaction _currentTransaction;
+    private IDbContextTransaction _currentTransaction = null!;
     public IDbContextTransaction GetCurrentTransaction() => _currentTransaction;
 
-    public virtual DbSet<Book> Books { get; set; }
-    public virtual DbSet<Author> Authors { get; set; }
-    public virtual DbSet<Category> Categories { get; set; }
-    
+    public DbSet<Book> Books { get; set; } = null!;
+    public DbSet<Author> Authors { get; set; } = null!;
+    public DbSet<Category> Categories { get; set; } = null!;
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder
+            .EnableSensitiveDataLogging(true)
+            .EnableDetailedErrors(true)
+            .UseNpgsql("Host=localhost;Port=5432;Username=myp;Password=batata123;Database=store;");
+    }
+
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

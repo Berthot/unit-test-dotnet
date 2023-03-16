@@ -2,7 +2,7 @@ namespace Application.CommonResponses;
 
 public class EntitySuccess<T>
 {
-    public EntitySuccess(bool success, T? body)
+    public EntitySuccess(bool success, T? body = default(T))
     {
         Success = success;
         Body = body;

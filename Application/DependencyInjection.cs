@@ -10,5 +10,6 @@ public static class DependencyInjection
     {
         services.ThrowIfNull();
         conf.ThrowIfNull();
+
     }
 }

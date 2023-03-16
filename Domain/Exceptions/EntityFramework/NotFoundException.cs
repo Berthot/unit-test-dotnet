@@ -47,6 +47,6 @@ public class NotFoundException : Exception
 	public static void When(bool condition, string message)
 	{
 		if (condition)
-			throw new DeleteFailureException(message);
+			throw new NotFoundException(message);
 	}
 }

@@ -2,8 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApi;
-
+namespace WebApi.Base;
 
 [ApiController]
 [Route("api/v1/[controller]")]
@@ -17,7 +16,7 @@ public class ApiControllerBase : ControllerBase
     [Route("/error")]
     public IActionResult HandleError([FromServices] IHostEnvironment hostEnvironment)
     {
-        if (hostEnvironment.IsDevelopment() == false) return Problem();
+        if (!hostEnvironment.IsDevelopment()) return Problem();
 
         var exceptionHandlerFeature = HttpContext.Features.Get<IExceptionHandlerFeature>()!;
 

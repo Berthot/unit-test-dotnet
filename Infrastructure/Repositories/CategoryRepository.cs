@@ -5,9 +5,9 @@ using Infrastructure.Repositories.Base;
 
 namespace Infrastructure.Repositories;
 
-public class BookRepository : Repository<Book>, IBookRepository
+public class CategoryRepository : Repository<Category>, ICategoryRepository
 {
-    public BookRepository(Context context) : base(context)
+    public CategoryRepository(Context context) : base(context)
     {
     }
 }

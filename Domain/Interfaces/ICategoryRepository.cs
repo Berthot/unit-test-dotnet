@@ -3,7 +3,7 @@ using Domain.Interfaces.Base;
 
 namespace Domain.Interfaces;
 
-public interface IBookRepository : IRepository<Book>
+public interface ICategoryRepository : IRepository<Category>
 {
     
 }

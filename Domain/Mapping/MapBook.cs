@@ -5,7 +5,7 @@ namespace Domain.Mapping;
 
 public static class MapBook
 {
-    public static BookDto AuthorMap(this Book book)
+    public static BookDto BookMap(this Book book)
     {
         return new BookDto
         {
@@ -17,7 +17,7 @@ public static class MapBook
         };
     }
 
-    public static Book AuthorMap(this BookDto book)
+    public static Book BookMap(this BookDto book)
     {
         return new Book
         {
