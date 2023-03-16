@@ -50,7 +50,7 @@ public class BookController : ApiControllerBase
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetBooksResponse))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<GetBooksResponse> GetById(CancellationToken cToken)
+    public async Task<GetBooksResponse> GetAll(CancellationToken cToken)
     {
         var command = new GetBooksQuery();
         return await Mediator.Send(command, cToken);

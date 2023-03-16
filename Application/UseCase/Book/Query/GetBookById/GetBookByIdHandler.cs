@@ -1,4 +1,3 @@
-using Application.UseCase.Author.Query.GetAuthorById;
 using Domain.Exceptions.EntityFramework;
 using Domain.Interfaces;
 using Domain.Mapping;

@@ -59,7 +59,7 @@ public class AuthorsController : ApiControllerBase
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(GetAuthorsResponse))]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<GetAuthorsResponse> GetById(CancellationToken cToken)
+    public async Task<GetAuthorsResponse> GetAll(CancellationToken cToken)
     {
         var command = new GetAuthorsQuery();
         return await Mediator.Send(command, cToken);
