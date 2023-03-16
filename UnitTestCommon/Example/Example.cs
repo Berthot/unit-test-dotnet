@@ -20,14 +20,17 @@ public class Example : DbContextInDocker<Context>
     
     
     [Test]
-    public void DoesNotThrowException_ExecuteAsync_ReturnVoid()
+    public async Task DoesNotThrowException_ExecuteAsync_ReturnVoid()
     {
         var category = CategorySeed.GetCategory(1);
-        _repo.CreateAsync(category);
-        foreach (var cat in _context.Categories.ToList())
+        await _repo.CreateAsync(category);
+        var getAll = await _repo.GetAllAsync();
+        foreach (var cat in getAll)
         {
             Console.WriteLine(cat.Id + " -- " + cat.Name);
         }
-        Assert.AreEqual(1, _context.Categories.Count());
+
+        var list = await _repo.GetAllAsync();
+        Assert.AreEqual(1, list.Count);
     }
 }
