@@ -2,8 +2,29 @@
 
     <PropertyGroup>
         <TargetFramework>net7.0</TargetFramework>
+        <AssemblyName>StoreAPI.UnitTestCommon</AssemblyName>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Domain\Domain.csproj" />
+      <ProjectReference Include="..\WebApi\WebApi.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Bogus" Version="34.0.2" />
+      <PackageReference Include="Docker.DotNet" Version="3.125.13" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.3" />
+      <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="7.0.3" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+      <PackageReference Include="NUnit" Version="3.13.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="testhost">
+        <HintPath>..\..\..\..\.nuget\packages\microsoft.testplatform.testhost\17.5.0\lib\netcoreapp3.1\testhost.dll</HintPath>
+      </Reference>
+    </ItemGroup>
 
 </Project>

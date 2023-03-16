@@ -9,6 +9,7 @@ public static class MapCategory
     {
         return new CategoryDto
         {
+            Id = category.Id,
             Name = category.Name
         };
     }

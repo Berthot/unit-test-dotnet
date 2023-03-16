@@ -4,5 +4,5 @@ namespace Application.UseCase.Category.Query.GetCategories;
 
 public class GetCategoriesResponse
 {
-    public List<BookDto> Data { get; set; } = new();
+    public List<CategoryDto> Data { get; set; } = new();
 }

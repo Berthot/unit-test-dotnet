@@ -12,13 +12,14 @@ public class CreateBookHandler : IRequestHandler<CreateBookCommand, BookCreated>
     {
         _repo = repo.ThrowIfNull();
     }
-    
+
     public async Task<BookCreated> Handle(CreateBookCommand command, CancellationToken cToken)
     {
         var entity = MapToEntity(command);
+        entity.CreatedAt = DateTime.UtcNow;
 
         await _repo.CreateAsync(entity);
-        
+
         return new BookCreated(true, "");
     }
 

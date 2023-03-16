@@ -9,6 +9,7 @@ public static class MapBook
     {
         return new BookDto
         {
+            Id = book.Id,
             Title = book.Title,
             Url = book.Url,
             CreatedAt = book.CreatedAt,
@@ -21,6 +22,7 @@ public static class MapBook
     {
         return new Book
         {
+            Id = book.Id,
             Title = book.Title,
             Url = book.Url,
             AuthorId = book.AuthorId,

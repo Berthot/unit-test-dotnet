@@ -9,6 +9,7 @@ public static class MapAuthor
     {
         return new AuthorDto
         {
+            Id = author.Id,
             Name = author.Name
         };
     }
@@ -17,6 +18,7 @@ public static class MapAuthor
     {
         return new Author
         {
+            Id = author.Id,
             Name = author.Name,
         };
     }

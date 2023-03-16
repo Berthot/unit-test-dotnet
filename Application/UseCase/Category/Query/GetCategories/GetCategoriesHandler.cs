@@ -7,9 +7,9 @@ namespace Application.UseCase.Category.Query.GetCategories;
 
 public class GetCategoriesHandler : IRequestHandler<GetCategoriesQuery, GetCategoriesResponse>
 {
-    private readonly IBookRepository _repo;
+    private readonly ICategoryRepository _repo;
 
-    public GetCategoriesHandler(IBookRepository repo)
+    public GetCategoriesHandler(ICategoryRepository repo)
     {
         _repo = repo.ThrowIfNull();
     }
@@ -20,7 +20,7 @@ public class GetCategoriesHandler : IRequestHandler<GetCategoriesQuery, GetCateg
 
         return new GetCategoriesResponse()
         {
-            Data = entities.Select(x => x.BookMap()).ToList()
+            Data = entities.Select(x => x.CategoryMap()).ToList()
         };
     }
 }
