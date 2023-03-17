@@ -1,6 +1,5 @@
 using System.Security.Claims;
 using Infrastructure.EntityFramework;
-using Infrastructure.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Policy;

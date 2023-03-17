@@ -12,6 +12,7 @@ public static class MapBook
             Id = book.Id,
             Title = book.Title,
             Url = book.Url,
+            Price = book.Price,
             CreatedAt = book.CreatedAt,
             AuthorId = book.AuthorId,
             CategoryId = book.CategoryId,

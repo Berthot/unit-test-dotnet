@@ -17,6 +17,8 @@ public class BookMapping : IEntityTypeConfiguration<Book>
         entity.Property(x => x.Title).IsRequired();
 
         entity.Property(x => x.Url);
+        
+        entity.Property(x => x.Price);
 
         entity.Property(x => x.CreatedAt);
 

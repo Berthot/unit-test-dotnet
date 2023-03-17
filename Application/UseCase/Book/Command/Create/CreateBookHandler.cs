@@ -28,6 +28,7 @@ public class CreateBookHandler : IRequestHandler<CreateBookCommand, BookCreated>
         var entity = new Domain.Entities.Book();
         entity.Title = command.Title;
         entity.Url = command.Url;
+        entity.Price = command.Price;
         entity.AuthorId = command.AuthorId.ToGuid();
         entity.CategoryId = command.CategoryId.ToGuid();
         return entity;

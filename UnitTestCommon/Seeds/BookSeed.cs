@@ -20,11 +20,12 @@ public class BookSeed
                 Title = Faker.Commerce.ProductName(),
                 Url = Faker.Internet.Url(),
                 CreatedAt = DateTime.UtcNow,
+                Price = (double) Faker.Finance.Amount(new decimal(20d), new decimal(600d)),
                 AuthorId = i.ToGuid(),
                 CategoryId = i.ToGuid(),
-
             });
         }
+
         return list;
     }
 
@@ -37,8 +38,8 @@ public class BookSeed
             Url = Faker.Internet.Url(),
             CreatedAt = DateTime.UtcNow,
             AuthorId = authorId.ToGuid(),
+            Price = (double) Faker.Finance.Amount(new decimal(20d), new decimal(600d)),
             CategoryId = categoryId.ToGuid(),
-
         };
     }
 }

@@ -8,4 +8,5 @@ public class BookDto
     public DateTime CreatedAt { get; set; }
     public Guid AuthorId { get; set; }
     public Guid CategoryId { get; set; }
+    public double Price { get; set; }
 }
