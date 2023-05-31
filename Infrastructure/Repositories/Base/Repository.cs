@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Domain.Entities.Base;
 using Domain.Exceptions.EntityFramework;
 using Domain.Interfaces.Base;
@@ -17,6 +18,17 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         _context = context.ThrowIfNull();
         _entities = context.Set<TEntity>();
     }
+    
+    public async Task<List<TEntity>> Filter(Expression<Func<TEntity, bool>> predicate)
+    {
+        return await _entities.Where(predicate).ToListAsync();
+    }
+    
+    public async Task<TEntity?> FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
+    {
+        return await _entities.FirstOrDefaultAsync(predicate);
+    }
+
 
     public Task<List<TEntity>> GetAllAsync()
     {
@@ -29,7 +41,7 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         await _entities.AddAsync(entity!);
         await _context.SaveChangesAsync();
     }
-
+    
     public async Task UpdateAsync(TEntity entity)
     {
         UpdateFailureException.When(entity == null,"Entity is null");
