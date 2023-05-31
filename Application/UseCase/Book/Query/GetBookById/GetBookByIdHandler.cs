@@ -17,7 +17,7 @@ public class GetBookByIdHandler : IRequestHandler<GetBookByIdQuery, GetBookRespo
 
     public async Task<GetBookResponse> Handle(GetBookByIdQuery query, CancellationToken cancellationToken)
     {
-        var entity = await _repo.GetByIdAsync(query.Id.ToGuid());
+        var entity = await _repo.GetEntityWithRelatedData(query.Id.ToGuid(), x => x.Author);
         NotFoundException.When(entity == default, "Book was not found");
 
         return new GetBookResponse(true, entity!.BookMap());

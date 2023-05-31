@@ -11,5 +11,7 @@ public interface IRepository<TEntity> where TEntity : Entity
     public Task<TEntity> GetByIdAsync(Guid id);
     public Task<List<TEntity>> Filter(Expression<Func<TEntity, bool>> predicate);
     public Task<TEntity?> FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
+    public Task<TEntity> GetEntityWithRelatedData(Guid id, params Expression<Func<TEntity, object>>[] includes);
+
 
 }

@@ -4,6 +4,7 @@ using Domain.Exceptions.EntityFramework;
 using Domain.Interfaces.Base;
 using Infrastructure.Extensions;
 using Microsoft.EntityFrameworkCore;
+
 // ReSharper disable ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
 
 namespace Infrastructure.Repositories.Base;
@@ -18,22 +19,32 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         _context = context.ThrowIfNull();
         _entities = context.Set<TEntity>();
     }
-    
+
+    public async Task<TEntity> GetEntityWithRelatedData(Guid id, params Expression<Func<TEntity, object>>[] includes)
+    {
+        var query = _context.Set<TEntity>().AsQueryable();
+
+        query = includes.Aggregate(query, (current, include) => current.Include(include));
+
+        return (await query.FirstOrDefaultAsync(x => x.Id == id))!;
+    }
+
+
     public async Task<List<TEntity>> Filter(Expression<Func<TEntity, bool>> predicate)
     {
         return await _entities.Where(predicate).ToListAsync();
     }
-    
-    public async Task<TEntity?> FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
-    {
-        return await _entities.FirstOrDefaultAsync(predicate);
-    }
-
 
     public Task<List<TEntity>> GetAllAsync()
     {
         return _entities.ToListAsync();
     }
+
+    public async Task<TEntity?> FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
+    {
+        return await _entities.FirstOrDefaultAsync(predicate);
+    }
+
 
     public async Task CreateAsync(TEntity entity)
     {
@@ -41,10 +52,10 @@ public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity :
         await _entities.AddAsync(entity!);
         await _context.SaveChangesAsync();
     }
-    
+
     public async Task UpdateAsync(TEntity entity)
     {
-        UpdateFailureException.When(entity == null,"Entity is null");
+        UpdateFailureException.When(entity == null, "Entity is null");
         _entities.Update(entity!);
         await _context.SaveChangesAsync();
     }
