@@ -7,13 +7,11 @@ public class CreateBookValidationTest
 {
     private CreateBookCommandValidator _validator = null!;
 
-
     [SetUp]
     public void SetUp()
     {
         _validator = new CreateBookCommandValidator();
     }
-
 
     [Test]
     public void Validate_TitleLessThanFiveCharacters_ValidationError()
